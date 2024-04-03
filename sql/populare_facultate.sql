@@ -857,12 +857,17 @@ begin
 				v_prietenie.id_student1 := random_between(1, stud_numar);
 				v_prietenie.id_student2 := random_between(1, stud_numar);
 				
-				select count(*)
-				into v_temp
-				from prieteni
-				where
-					(id_student1 = v_prietenie.id_student1 and id_student2 = v_prietenie.id_student2) or
-					(id_student1 = v_prietenie.id_student2 and id_student2 = v_prietenie.id_student1);
+				if (v_prietenie.id_student1 = v_prietenie.id_student2)
+				then
+					v_temp := 1;
+				else
+					select count(*)
+					into v_temp
+					from prieteni
+					where
+						(id_student1 = v_prietenie.id_student1 and id_student2 = v_prietenie.id_student2) or
+						(id_student1 = v_prietenie.id_student2 and id_student2 = v_prietenie.id_student1);
+				end if;
 				exit when v_temp = 0; 
 			end loop;
 			v_prietenie.created_at := imortal - concat(random_between(0, 999)::text, ' days')::interval;
