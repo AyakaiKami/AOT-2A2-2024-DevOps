@@ -5,6 +5,7 @@ Proiect IP 2024
 + **root**
   - **cloudformation** : fișiere yaml pentru descrierea infrastructurii virtuale pe AWS
   - **docs** : documentație (în general)
+    * **.aws** : model configurație pentru aws-cli
   - **nixos** : fișiere .nix ce descriu starea unei mașini EC2 + NIXOS
   - **sql** : scripturi sql pentru testarea bazelor de date postgresql
   - _README.md_ : acest fișier
